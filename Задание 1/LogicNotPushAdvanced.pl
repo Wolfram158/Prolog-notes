@@ -39,15 +39,17 @@ push(X, X).
 simplify(or(1, X), 1) :- !.
 simplify(or(X, 1), 1) :- !.
 simplify(or(0, X), Z) :-
-    simplify(X, Z).
+    simplify(X, Z),
+    !.
 simplify(or(X, 0), Z) :-
-    simplify(X, Z).
+    simplify(X, Z),
+    !.
 simplify(or(X, Y), Z) :- 
     simplify(X, U), 
     simplify(Y, V), 
     \+ number(U),
     \+ number(V),
-    Z is or(U, V),
+    Z = or(U, V),
     !.
 simplify(or(X, Y), Z) :-
     simplify(X, U),
@@ -66,7 +68,7 @@ simplify(and(X, Y), Z) :-
     simplify(Y, V),
     \+ number(U),
     \+ number(V),
-    Z = and(X, Y),
+    Z = and(U, V),
     !.
 simplify(and(X, Y), Z) :-
     simplify(X, U),
@@ -74,12 +76,14 @@ simplify(and(X, Y), Z) :-
     simplify(and(U, V), Z),
     !.
 
+get(X, X) :- !.
+
 simplify(not(0), 1) :- !.
 simplify(not(1), 0) :- !.
 simplify(not(X), Z) :-
     simplify(X, U),
     \+ number(U),
-    Z is U,
+    get(not(U), Z),
     !.
 simplify(not(X), Z) :-
     simplify(X, U),
@@ -87,3 +91,7 @@ simplify(not(X), Z) :-
     !.
 
 simplify(X, X).
+
+push_and_simplify(X, Z) :-
+    push(X, U),
+    simplify(U, Z).
