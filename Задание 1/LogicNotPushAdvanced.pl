@@ -33,7 +33,8 @@ push(not(or(X, Y)), and(U, V)) :-
     push(not(Y), V), 
     !.
 push(not(not(X)), Z) :- 
-    push(X, Z).
+    push(X, Z),
+    !.
 push(X, X).
 
 simplify(or(1, X), 1) :- !.
@@ -54,7 +55,8 @@ simplify(or(X, Y), Z) :-
 simplify(or(X, Y), Z) :-
     simplify(X, U),
     simplify(Y, V),
-    simplify(or(U, V), Z).
+    simplify(or(U, V), Z),
+    !.
 simplify(and(0, X), 0) :- !.
 simplify(and(X, 0), 0) :- !.
 simplify(and(1, X), Z) :- 
