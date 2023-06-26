@@ -33,5 +33,6 @@ push(not(or(X, Y)), and(U, V)) :-
     push(not(Y), V), 
     !.
 push(not(not(X)), Z) :- 
-    push(X, Z).
+    push(X, Z),
+    !.
 push(X, X).
