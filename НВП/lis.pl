@@ -50,32 +50,30 @@ append([B | C], A, [U | V]) :-
     !.
 append([], A, [A]) :- !.
 
-d([A | B], 0, Limit, M, [C | D]) :- 
+d(A, 0, Limit, M, [C | D]) :- 
     C is 1,
-    T = [],
-    append(T, 1, T1),
-    d([A | B], 1, Limit, T1, D),
+    d(A, 1, Limit, [1], D),
     !.
-d([A | B], Index, Limit, Dynamic, [C | D]) :-
+d(A, Index, Limit, Dynamic, [C | D]) :-
     Index < Limit,
-    ith_element([A | B], Index, Element),
-    filter([A | B], 0, Index, Element, List),
+    ith_element(A, Index, Element),
+    filter(A, 0, Index, Element, List),
     \+ List = [],
     get_d(List, Dynamic, [First | Rest]),
     max(First, [First | Rest], Max),
     C is Max + 1,
     Next is Index + 1,
     append(Dynamic, C, Current),
-    d([A | B], Next, Limit, Current, D),
+    d(A, Next, Limit, Current, D),
     !.
-d([A | B], Index, Limit, Dynamic, [C | D]) :-
+d(A, Index, Limit, Dynamic, [C | D]) :-
     Index < Limit,
     C is 1,
     Next is Index + 1,
     append(Dynamic, C, Current),
-    d([A | B], Next, Limit, Current, D),
+    d(A, Next, Limit, Current, D),
     !.
-d([A | B], Index, Limit, Dynamic, []) :- !. 
+d(A, Index, Limit, Dynamic, []) :- !. 
 
 lis_length([], 0) :- !.
 
