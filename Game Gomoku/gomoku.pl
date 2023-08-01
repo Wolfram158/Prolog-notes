@@ -118,3 +118,19 @@ gomoku(Board, Result) :-
 gomoku(Board, Result) :-
     Result = none,
     !. 
+
+% yes.
+% Answer / black
+% Solution: gomoku(['..W.BBBWBW','BBWWW.B.BW','BB.WW.BBW.','WWBWBB..W.','WWW.BBBWW.','...BWBBW.B','WWBBWWBB.W','W...B.BW.W','WBB...WBB.','BBB.BB..BW'],black)
+
+% yes.
+% Answer / white
+% Solution: gomoku(['BBBWW.B.WBB.','.W..BWWWWWWB','.WB.BWB....B','..B..WBWBB.B','.BW.W...W.W.','BWWBWW.BBWW.','BWWB.W.BWW.W','W.W.WBWWWBB.','B..B...BB.WW'],white)
+
+% yes.
+% Answer / both
+% Solution: gomoku(['WBWW.WB...','.BBBBB.BB.','B.WWWWB.BB','WB..WWBWWW','WW.WWBBWWW','B.WWW...BW','BBW.WWB..B','W....BBWW.','WWW.BWWWWB','.W..BWWWWB'],both)
+
+% yes.
+% Answer / none
+% Solution: gomoku(['.BWB.WBW','B.BW.BWB','WWWB..W.','WB.WWW.B','BBB..W.B','BWW.BBWB','BBBB.BWW'],none)
