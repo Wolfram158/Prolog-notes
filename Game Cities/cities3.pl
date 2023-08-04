@@ -64,10 +64,15 @@ final(Input, First, Last) :-
     array(T),
     find_min(T, 9999999).
 
+retract_all(Any) :-
+    retractall(city(X)),
+    retractall(answer(X)),
+    !.
+    
 % How to use: 
 % Let Input be the list of input cities, CityFirst and CityLast be the first and the last cities respectively.
 % Then call:
 % 1. final(Input, CityFirst, CityLast)
 % 2. trueResult(X)
 % 3. X is the answer.
-% To call again call retractall(answer(X)), retractall(city(X)).
+% To call again call retract_all(Any)
