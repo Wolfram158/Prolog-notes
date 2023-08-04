@@ -50,7 +50,6 @@ find_min([], Y) :- !.
 find_min([A | B], Y) :-
     length(A, Length),
     Length < Y,
-    write(Length),
     retractall(trueResult(X)),
     assert(trueResult(A)),
     find_min(B, Length),
